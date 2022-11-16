@@ -1,9 +1,9 @@
 interface GimbobIngredientInterface {
     main?: string,
-    vegetables: boolean,
     rice: number,
     steamedRice: number,
-    laver: number
+    laver: number,
+    vegetables: boolean,
 }
 
 export default GimbobIngredientInterface;

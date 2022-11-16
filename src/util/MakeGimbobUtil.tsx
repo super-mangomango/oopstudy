@@ -1,6 +1,13 @@
 import GimbobIngredientInterface from "../interface/GimbobIngredientInterface";
 
-class MakeGimbobUtil {
+interface GimbobMaker {
+  makeGimbob(amount: number): {
+    completed:string
+    leftIngredients:string
+  }
+}
+
+class MakeGimbobUtil implements GimbobMaker{
   ingredient: GimbobIngredientInterface = {
     main: undefined,
     vegetables: true,
@@ -26,7 +33,7 @@ class MakeGimbobUtil {
     return new MakeGimbobUtil(main, rice, laver);
   }
 
-  makeSteamedRice(amount: number) {
+  private makeSteamedRice(amount: number) {
     if (amount * 100 > this.ingredient.rice) {
       console.error("쌀이 부족합니다.");
     } else {
@@ -36,11 +43,11 @@ class MakeGimbobUtil {
     }
   }
 
-  makeSaltySteamedRice() {
+  private makeSaltySteamedRice() {
     console.log("밥에 간을 하고 있습니다.");
   }
 
-  setSteamedRiceAndLaver(amount: number) {
+  private setSteamedRiceAndLaver(amount: number) {
     if (amount > this.ingredient.laver) {
       console.error("김이 부족합니다.");
     } else {
@@ -50,11 +57,11 @@ class MakeGimbobUtil {
     }
   }
 
-  setLeftIngredient() {
+  private static setLeftIngredient() {
     console.log("재료를 올리고 있습니다.");
   }
 
-  roll() {
+  private static roll() {
     console.log("꾹꾹 말고 있습니다.");
   }
 
@@ -62,12 +69,12 @@ class MakeGimbobUtil {
     this.makeSteamedRice(amount);
     this.makeSaltySteamedRice();
     this.setSteamedRiceAndLaver(amount);
-    this.setLeftIngredient();
-    this.roll();
-    console.log(`${this.ingredient.main}김밥 ${amount}줄 완성!!`);
-    console.log(
-      `남은 재료는 쌀${this.ingredient.rice}g, 밥${this.ingredient.steamedRice}공기, 김${this.ingredient.laver}장 입니다.`
-    );
+    MakeGimbobUtil.setLeftIngredient();
+    MakeGimbobUtil.roll();
+    return {
+      completed: `${this.ingredient.main}김밥 ${amount}줄`,
+      leftIngredients: `남은 재료는 쌀${this.ingredient.rice}g, 밥${this.ingredient.steamedRice}공기, 김${this.ingredient.laver}장 입니다.`
+    }
   }
 }
 
