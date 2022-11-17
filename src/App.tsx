@@ -15,7 +15,7 @@ function App() {
   };
 
   const popExample = (amount: number) => {
-    const make = new Encapsulation("참치마요", 1000, 10);
+    const make = new Encapsulation("김치", 1000, 10);
     make.makeGimbob(amount);
     let array = [];
     for (let i = 0; i < amount; i += 1) {
@@ -29,6 +29,8 @@ function App() {
           width: "400px",
           height: "auto",
           zIndex: num + 1,
+          transition: `all ${2 + num}s linear`,
+          display: "block",
         }}
         alt="김밥"
       />
@@ -39,7 +41,14 @@ function App() {
         <div style={{ marginTop: "20px", fontSize: "32px", fontWeight: "700" }}>
           {make.makeGimbob(amount).completed}
         </div>
-        <div style={{ marginTop: "10px", fontSize: "24px", fontWeight: "500" }}>
+        <div
+          style={{
+            marginTop: "10px",
+            marginBottom: "50px",
+            fontSize: "24px",
+            fontWeight: "500",
+          }}
+        >
           {make.makeGimbob(amount).leftIngredients}
         </div>
       </>
