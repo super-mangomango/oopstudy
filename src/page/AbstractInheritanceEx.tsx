@@ -92,8 +92,8 @@ function AbstractInheritanceEx() {
             >
                 <h3 css={title}>4. 상속의 추상화</h3>
                 <ul css={css`margin: 16px 0`}>
-                    <li css={list}>추상화된 상위 객체의 특징에 추가된 특징을 가지는 하위 객체가 상위객체로부터 개념을 물려받는 것</li>
-                    <li css={list}>휘발유를 사용하고, 4개의 바퀴가 있고, 움직이는 <span css={code}>자동차(상위 개념)</span><br/>→ 동일한 특징을 가지지만 뚜껑이 열리는 <span css={code}>스포츠카(상위 개념)</span></li>
+                    <li css={list}>상위 클래스(큰 개념)만으로 객체를 사용할 경우가 없거나, 너무 크게 추상화가 되었을 때, 하위 클래스만으로 실제로 사용될 때, 공통동작을 제공하는 역할을 한다.</li>
+                    <li css={list}>공통 동작과, 객체 각각의 특징 메서드의 구현이 분리되어 있어, 유지보수에 용이하고 가독성이 좋아진다.</li>
                 </ul>
             </div>
             <div style={{
@@ -143,12 +143,6 @@ const title = css`
   font-size: 32px;
   margin: 48px 0 24px;
 `
-const code = css`
-  background-color: #f1f1f1;
-  padding: 0.5px 2px;
-  font-weight: 700;
-`
-
 const list = css`
   font-size: 16px;
   padding: 8px 0;

@@ -4,7 +4,6 @@ import {css} from "@emotion/react";
 import Inheritance from "../service/Inheritance";
 import Abstraction from "../service/Abstraction";
 import InheritanceTwo from "../service/InheritanceTwo";
-import MakeGimbobInterface from "../interface/MakeGimbobInterface";
 
 
 function PolymorphismEx() {
@@ -15,7 +14,7 @@ function PolymorphismEx() {
     };
 
     const popExample = (amount: number) => {
-        const make: MakeGimbobInterface[] = [
+        const make = [
             Abstraction.setIngredient("참치", 1000, 10),
             new Inheritance("김치", 1000, 10, true),
             new InheritanceTwo("스팸", 1000, 10, true),

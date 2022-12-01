@@ -8,6 +8,7 @@ import InheritanceEx from "./page/InheritanceEx";
 import AbstractInheritanceEx from "./page/AbstractInheritanceEx";
 import PolymorphismEx from "./page/PolymorphismEx";
 import CompositionEx from "./page/CompositionEx";
+import FinalEx from "./page/FinalEx";
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
                 <Route path="/상속+추상화" element={<AbstractInheritanceEx/>}/>
                 <Route path="/다형성" element={<PolymorphismEx/>}/>
                 <Route path="/합성" element={<CompositionEx/>}/>
+                <Route path="/진짜합성" element={<FinalEx/>}/>
             </Routes>
         </>
     )

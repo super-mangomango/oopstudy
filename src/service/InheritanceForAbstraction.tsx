@@ -1,5 +1,6 @@
 import GimbobIngredientInterface from "../interface/GimbobIngredientInterface";
 import MakeGimbobInterface from "../interface/MakeGimbobInterface";
+import GimbobInterface from "../interface/GimbobInterface";
 
 abstract class InheritanceForAbstraction implements MakeGimbobInterface {
     protected RICE_GRAM_FOR_STEAMED = 100;
@@ -21,11 +22,7 @@ abstract class InheritanceForAbstraction implements MakeGimbobInterface {
         };
     }
 
-    fillRice(rice: number) {
-        this.ingredient.rice += rice;
-    }
-
-    makeGimbob(amount: number) {
+    makeGimbob(amount: number): GimbobInterface {
         this.makeSteamedRice(amount);
         this.makeSaltySteamedRice();
         this.setSteamedRiceAndLaver(amount);

@@ -1,9 +1,9 @@
 import GimbobIngredientInterface from "../interface/GimbobIngredientInterface";
 
 class Encapsulation {
-    private static RICE_GRAM_FOR_STEAMED = 100;
+    static RICE_GRAM_FOR_STEAMED = 100;
 
-    protected ingredient: GimbobIngredientInterface = {
+    ingredient: GimbobIngredientInterface = {
         main: undefined,
         rice: 0,
         steamedRice: 0,
@@ -25,35 +25,31 @@ class Encapsulation {
     //     return new Encapsulation(rice, laver);
     // }
 
-    private static makeSaltySteamedRice() {
+    makeSaltySteamedRice() {
         console.log("밥에 간을 하고 있습니다.");
     }
 
-    private static setLeftIngredient() {
+    setLeftIngredient() {
         console.log("재료를 올리고 있습니다.");
     }
 
-    private static roll() {
+    roll() {
         console.log("꾹꾹 말고 있습니다.");
     }
 
     makeGimbob(amount: number) {
         this.makeSteamedRice(amount);
-        Encapsulation.makeSaltySteamedRice();
+        this.makeSaltySteamedRice();
         this.setSteamedRiceAndLaver(amount);
-        Encapsulation.setLeftIngredient();
-        Encapsulation.roll();
+        this.setLeftIngredient();
+        this.roll();
         return {
             completed: `김밥 ${amount}줄 완성!`,
             leftIngredients: `남은 재료는 쌀${this.ingredient.rice}g, 밥${this.ingredient.steamedRice}공기, 김${this.ingredient.laver}장 입니다.`,
         };
     }
 
-    fillRice(rice: number) {
-        this.ingredient.rice += rice;
-    }
-
-    private makeSteamedRice(amount: number) {
+    makeSteamedRice(amount: number) {
         if (amount * Encapsulation.RICE_GRAM_FOR_STEAMED > this.ingredient.rice) {
             console.error("쌀이 부족합니다.");
         } else {
@@ -63,7 +59,7 @@ class Encapsulation {
         }
     }
 
-    private setSteamedRiceAndLaver(amount: number) {
+    setSteamedRiceAndLaver(amount: number) {
         if (amount > this.ingredient.laver) {
             console.error("김이 부족합니다.");
         } else {

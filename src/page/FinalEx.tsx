@@ -1,18 +1,16 @@
 import React, {ReactElement, useState} from "react";
-import CompositionImg from "../images/prob_inheritance.png";
 import Gimbob from "../images/gimbab.png"
 import {css} from "@emotion/react";
-import Composition from "../service/Composition";
-import AddHotSauce from "../util/AddHotSauce";
-import AddCucumber from "../util/AddCucumber";
-import {Link} from "react-router-dom";
+import AddOtherIngredient from "../util/AddOtherIngredient";
+import AddSauce from "../util/AddSauce";
+import RealComposition from "../service/RealComposition";
 
 type orderType = {
     amount: number,
     main: string
 }
 
-function CompositionEx() {
+function FinalEx() {
     const [order, setOrder] = useState<orderType>({amount: 0, main: ""});
     const [resultImg, setResultImg] = useState<ReactElement[] | undefined>(
         undefined
@@ -27,9 +25,9 @@ function CompositionEx() {
     };
 
     const popExample = (order: orderType) => {
-        const hotSauce = new AddHotSauce();
-        const cucumber = new AddCucumber();
-        const make = new Composition(order.main, 1000, 10, hotSauce, cucumber);
+        const sauce = new AddSauce("마요네즈");
+        const other = new AddOtherIngredient("오이");
+        const make = RealComposition.setIngredient(order.main, 1000, 10, sauce, other);
         const result = make.makeGimbob(order.amount);
         let array = [];
         for (let i = 0; i < order.amount; i += 1) {
@@ -54,11 +52,9 @@ function CompositionEx() {
         setResult(
             <>
                 <div style={{marginTop: "20px", fontSize: "32px", fontWeight: "700", textAlign: "center"}}>
-                    {!result.hotSauce || "🔥🔥 엄청 매운"}
-                    {result.completed}
-                    {!result.hotSauce || "🔥🔥"}
-                    <br/>
-                    (오이 들었음 🤢🤢🤢)
+                    {!result.sauce || `${result.sauce} 가득 뿌려진`} <br/>
+                    {result.completed} <br/>
+                    {!result.other || `(${result.other} 추가되었습니다.)`}
                 </div>
                 <div
                     style={{
@@ -88,14 +84,12 @@ function CompositionEx() {
                     paddingBottom: "96px"
                 }}
             >
-                <h3 css={title}>6. 합성</h3>
-                <img src={CompositionImg} alt="상속"/>
+                <h3 css={title}>Interface를 통한 규격화</h3>
                 <ul css={css`margin: 16px 0`}>
-                    <li css={list}>상속의 단계가 깊어질수록 객체간의 관계가 복잡해진다. (의존성↑ 독립성↓)</li>
-                    <li css={list}>복잡해진 관계도만큼, 부모 클래스가 수정되었을 때, 유지보수가 힘들다.</li>
-                    <li css={list}>동시에 두 개 이상의 클래스를 상속받을 수 없다.
+                    <li css={list}>1. 합성되는 부분의 메서드가 재활용될 수 있도록 추상화</li>
+                    <li css={list}>2. 합성되는 메서드의 Interface 규격화</li>
+                    <li css={list}>3. 합성되는 부분을 포함할 수 있는 본 메서드의 Interface 규격화
                     </li>
-                    <li css={list}><strong>Object의 구조가 복잡하고, 변수가 많을 수록 composition을 사용하는 것이 클린 코드에 가깝다.</strong></li>
                 </ul>
             </div>
             <div style={{
@@ -132,35 +126,13 @@ function CompositionEx() {
                     {result}
                 </div>
             </div>
-            <Link to="/진짜합성" style={{textDecoration: "none"}}>
-                <button css={toComposition}>진짜 합성</button>
-            </Link>
         </div>
     );
 }
 
-
-
 const title = css`
   font-size: 32px;
   margin: 48px 0 24px;
-`
-const toComposition = css`
-  background-color: lightseagreen;
-  margin: 48px auto;
-  width: 360px;
-  padding: 20px;
-  display: block;
-  color: white;
-  font-size: 24px;
-  font-weight: 700;
-  cursor: pointer;
-  border: none;
-  border-radius: 10px;
-
-  &:hover {
-    background-color: seagreen;
-  }
 `
 
 const list = css`
@@ -169,4 +141,4 @@ const list = css`
 `
 
 
-export default CompositionEx;
+export default FinalEx;

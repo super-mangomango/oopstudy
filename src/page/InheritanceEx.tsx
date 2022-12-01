@@ -24,7 +24,7 @@ function InheritanceEx() {
     };
 
     const popExample = (order: orderType) => {
-        const make = new Inheritance(order.main, 1000, 10, false);
+        const make = new Inheritance(order.main, 1000, 10, true);
         const result = make.makeGimbob(order.amount);
         let array = [];
         for (let i = 0; i < order.amount; i += 1) {
@@ -48,10 +48,11 @@ function InheritanceEx() {
         setResultImg(listItems);
         setResult(
             <>
-                <div style={{marginTop: "20px", fontSize: "32px", fontWeight: "700"}}>
-                    {!result.veryVeryHot || "🔥🔥 엄청 매운"}
+                <div style={{marginTop: "20px", fontSize: "32px", fontWeight: "700", textAlign: "center"}}>
+                    {!result.hotSauce || "🔥🔥 엄청 매운"}
                     {result.completed}
-                    {!result.veryVeryHot || "🔥🔥"}
+                    {!result.hotSauce || "🔥🔥"}<br/>
+                    {!result.hasCucumber || "(오이 들었음 🤢🤢🤢)"}
                 </div>
                 <div
                     style={{
